@@ -2,5 +2,14 @@ class DataOutput:
     def __init__(self):
         print("init DataOutput")
 
-    def process(dataobject):
-        return dataobject
+    def process(self, solution, caps, wordpuzzle):
+        self.write_file(solution, 'solution.txt')
+        self.write_file(caps, 'solution_capslock.txt')
+        self.write_file(wordpuzzle, 'wordpuzzle.txt')
+        print('printing fields')
+
+
+    def write_file(self, field, name):
+        with open(name, 'w') as file:
+            for line in field:
+                file.write(''.join(line) + '\n')
