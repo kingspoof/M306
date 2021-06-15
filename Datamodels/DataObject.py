@@ -1,7 +1,7 @@
 class DataObject:
 
     height = 30
-    widht = 30
+    width = 30
 
     all_words = []
     spezial_words = [[]]

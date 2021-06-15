@@ -13,7 +13,7 @@ model_DataOutput = DataOutput()
 dataObject = DataObject()
 
 
-dataObject.height, dataObject.widht, dataObject.all_words, dataObject.spezial_words = model_DataInput.process()
+dataObject.height, dataObject.width, dataObject.all_words, dataObject.spezial_words = model_DataInput.process()
 #dataObject = model_DataProcessing.process(dataObject)
 #dataObject = model_DataOutput.process(dataObject)
 
