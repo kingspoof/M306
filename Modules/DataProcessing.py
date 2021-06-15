@@ -10,11 +10,10 @@
 from os import DirEntry
 from posixpath import join
 from random import randrange
+import random
 
 
 class DataProcessing:
-
-    directions = [1,2,3]
     empty_char = ' '
 
     def __init__(self):
@@ -27,9 +26,12 @@ class DataProcessing:
 
         #place speziel words in array
         field_words = self.place_specific_words(field_words, special_words)
+        #place generic words in array
         field_words = self.place_general_words(field_words, general_words)
-        for n in field_words:
-            print(''.join(n))
+
+
+        field_words_caps = self.replace_empty_with_randm_char(field_words, 1)
+        field = self.replace_empty_with_randm_char(field_words, 2)
 
         return field_words, field_words_caps, field
 
@@ -108,4 +110,20 @@ class DataProcessing:
             word_to_place = word  + ''
             for i in range(len(word_to_place)):
                 target[x][y + i] = word_to_place[i].upper()
+        return target
+
+    #use  1 to lower, use 2 to upper
+    def replace_empty_with_randm_char(self, source, mode):
+        alphabet = 'abcdefghijklmnopqrstuvwxyzäöü'
+        target = self.empty_array_with_size(len(source), len(source[0]))
+        for i in range(len(source)):
+            for j in range(len(source[i])):
+                #print(source[i][j])
+                if(source[i][j] == self.empty_char):
+                    if mode == 1:
+                        target[i][j] = random.choice(alphabet).lower()
+                    else:
+                        target[i][j] = random.choice(alphabet).upper()
+                else:
+                    target[i][j] = source[i][j]
         return target
