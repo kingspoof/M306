@@ -12,10 +12,11 @@ model_DataOutput = DataOutput()
 
 dataObject = DataObject()
 
-
-dataObject.height, dataObject.width, dataObject.all_words, dataObject.spezial_words = model_DataInput.process()
-#dataObject = model_DataProcessing.process(dataObject)
-#dataObject = model_DataOutput.process(dataObject)
+print('------------- Begin reading ...')
+height, widht, all_words, spezial_words = model_DataInput.process()
+print('------------- Begin Processing ...')
+field_words, field_words_caps, field = model_DataProcessing.process(height, widht, all_words, spezial_words)
+print('------------- Begin Printing, error low on cyan ...')
 
 
 print('All done!')

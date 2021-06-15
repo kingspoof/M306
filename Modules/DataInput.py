@@ -14,24 +14,30 @@ class DataInput:
     #get data from user, returns height, width, general_word_list, spezial_word_list
     def process(self):
         #gets the height
-        height = self.get_number_input('Height: ')
+        #########height = self.get_number_input('Height: ')
+        height = 200
         #gets the width
-        width = self.get_number_input('Width: ')
+        #########width = self.get_number_input('Width: ')
+        width = 200
         #gets the general words
-        word_list_file = self.get_input_file('Input file to general word list: ')
+        #########word_list_file = self.get_input_file('Input file to general word list: ')
+        word_list_file = '/Users/lucienkaser/Desktop/general.txt'
         general_word_list = self.file_to_list(word_list_file)
         general_word_list = self.remove_double_words(general_word_list)
         self.print_all_lines_in_list(general_word_list, 'Your words: ')
 
         #gets the spezial words
         spezial_word_list = []
-        if(self.yes_no_Question('Do you want to input spezial words?','y','n')):
-            spezial_word_path = self.get_input_file('Filepath to spezial words file: ')
+        #######if(self.yes_no_Question('Do you want to input spezial words?','y','n')):
+        if True:
+            ##########spezial_word_path = self.get_input_file('Filepath to spezial words file: ')
+            spezial_word_path = '/Users/lucienkaser/Desktop/spezial.txt'
             spezial_word_lines = self.file_to_list(spezial_word_path)
             spezial_word_lines = self.remove_double_words(spezial_word_lines)
             #self.print_all_lines_in_list(spezial_word_lines, 'Your spezial words: ')
             spezial_word_list = self.read_coordinates_from_line(spezial_word_lines)
 
+            print('Spezal Words: ( ', len(spezial_word_list), ' )')
             for n in spezial_word_list:
                 print(len(n), n)
         #returns the things
@@ -81,7 +87,7 @@ class DataInput:
     def read_coordinates_from_line(self, line):
         list = [[]]
         for l in line:
-            print(' - '.join(str(l).split(',')))
+            #print(' - '.join(str(l).split(',')))
             list.append(str(l).split(','))
 
         filteredlist = []
