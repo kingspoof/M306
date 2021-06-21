@@ -19,11 +19,14 @@ class DataProcessing:
     def __init__(self):
         print("init dataprocessing")
 
-    def process(self, height, width, general_words, special_words):
+    def process(self, height, width, general_words, special_words, paragraph_words):
         field_words = self.empty_array_with_size(height, width)
         field_words_caps = self.empty_array_with_size(height, width)
         field = self.empty_array_with_size(height, width)
 
+
+        #places the paragraph into the text
+        field_words = self.palce_paragraph(field_words, paragraph_words)
         #place speziel words in array
         field_words = self.place_specific_words(field_words, special_words)
         #place generic words in array
@@ -57,6 +60,33 @@ class DataProcessing:
                 direction = randrange(0,4)
                 if(self.has_word_space(target, w, x, y, direction)):
                     target = self.place_word_in_space(target, w, x, y, direction)
+                else:
+                    print(w, 'could not be put in due to size restriction')
+            except:
+                print(word, ' has invalid coordinates')
+        #print('after')
+        #for n in target:
+        #    print(' '.join(n))
+        
+        return target
+
+
+    #puts the special words into the 
+    def palce_paragraph(self, target, source):
+        #print('before')
+        #for n in target:
+        #    print(''.join(n))
+
+        for word in source:
+            try:
+                hasspace = True
+                x = int(word[0])
+                y = int(word[1])
+                w = word[2] + ''
+
+                #when the word can be placed, place the word
+                if(self.has_word_space(target, w, x, y, 25)):
+                    target = self.place_word_in_space(target, w, x, y, 25)
                 else:
                     print(w, 'could not be put in due to size restriction')
             except:
