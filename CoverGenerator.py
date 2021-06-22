@@ -2,15 +2,11 @@ from Modules.DataInput import DataInput
 from Modules.DataProcessing import DataProcessing
 from Modules.DataOutput import DataOutput
 
-from Datamodels.DataObject import DataObject
-
 
 model_DataInput = DataInput()
 model_DataProcessing = DataProcessing()
 model_DataOutput = DataOutput()
 
-
-dataObject = DataObject()
 
 print('------------- Begin reading ...')
 height, widht, all_words, spezial_words, paragraph = model_DataInput.process()
