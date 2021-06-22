@@ -21,6 +21,9 @@ class DataProcessing:
 
     #processes the data into the field, places the paragraph then the spezial words and then all general words
     def process(self, height, width, general_words, special_words, paragraph_words):
+
+        charcount = self.want_chars(general_words, special_words, paragraph_words)
+
         field_words = self.empty_array_with_size(height, width)
         field_words_caps = self.empty_array_with_size(height, width)
         field = self.empty_array_with_size(height, width)
@@ -33,11 +36,48 @@ class DataProcessing:
         #place generic words in array
         field_words = self.place_general_words(field_words, general_words)
 
+        validated = self.count_chars(field_words)
 
         field_words_caps = self.replace_empty_with_randm_char(field_words, 1)
         field = self.replace_empty_with_randm_char(field_words, 2)
 
+
+        if(charcount == validated):
+            print('All word were placed')
+        else:
+            print('There were ', (charcount - validated), ' missing chars')
+
         return field_words, field_words_caps, field
+
+    #get all chars in the word lists
+    def want_chars(self, words1, words2, words3):
+        ret = 0
+        for n in words1:
+            for c in n:
+                if c != ' ':
+                    ret += 1
+        
+        for s in words2:
+            for c in s[2]:
+                if c != ' ':
+                    ret += 1
+
+        for n in words3:
+            for c in n[2]:
+                if c != ' ':
+                    ret += 1
+                    
+        print('------------------> ', ret)
+        return ret
+    #get all chars in 
+    def count_chars(self, field):
+        ret = 0
+        for line in field:
+            for char in line:
+                if(char != ' '):
+                    ret += 1
+        print('_______________> ', ret)
+        return ret
     #creates an empty array with the given size
     def empty_array_with_size(self, height, width):
         data = [[self.empty_char] * height for i in range(width)]
