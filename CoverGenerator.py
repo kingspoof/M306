@@ -1,8 +1,9 @@
+#imports to use the modules in the main code
 from Modules.DataInput import DataInput
 from Modules.DataProcessing import DataProcessing
 from Modules.DataOutput import DataOutput
 
-
+#creates attributes of the imported modules
 model_DataInput = DataInput()
 model_DataProcessing = DataProcessing()
 model_DataOutput = DataOutput()

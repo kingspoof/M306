@@ -19,6 +19,7 @@ class DataProcessing:
     def __init__(self):
         print("init dataprocessing")
 
+    #processes the data into the field, places the paragraph then the spezial words and then all general words
     def process(self, height, width, general_words, special_words, paragraph_words):
         field_words = self.empty_array_with_size(height, width)
         field_words_caps = self.empty_array_with_size(height, width)
@@ -37,12 +38,10 @@ class DataProcessing:
         field = self.replace_empty_with_randm_char(field_words, 2)
 
         return field_words, field_words_caps, field
-
     #creates an empty array with the given size
     def empty_array_with_size(self, height, width):
         data = [[self.empty_char] * height for i in range(width)]
         return data
-
     #puts the special words into the 
     def place_specific_words(self, target, source):
         #print('before')
@@ -69,8 +68,6 @@ class DataProcessing:
         #    print(' '.join(n))
         
         return target
-
-
     #puts the special words into the 
     def palce_paragraph(self, target, source):
         #print('before')
@@ -96,12 +93,11 @@ class DataProcessing:
         #    print(' '.join(n))
         
         return target
-
     #place the rest of the words into the field
     def place_general_words(self, target, source):
         for word in source:
             #we will try to place each word 25 times if it does not work by then there is an issue
-            for n in range(25):
+            for n in range(100):
                 x = randrange(0, len(target))
                 y = randrange(0, len(target[0]))
                 direction = randrange(0,4)
@@ -109,7 +105,7 @@ class DataProcessing:
                     self.place_word_in_space(target, word, x, y, direction)
                     break
         return target
-
+    #returns true if the word could be places into the coordinates, with the direction
     def has_word_space(self, target, word, x, y, direction):
         try:
             if direction == 1:
@@ -127,7 +123,6 @@ class DataProcessing:
         except:
             return False
         return True #if we don't throw an error or quit, we have succeded
-
     #places the word, does not check if it has space
     def place_word_in_space(self, target, word, x, y, direction):
         if direction == 1: #we try diagonal
@@ -141,7 +136,6 @@ class DataProcessing:
             for i in range(len(word_to_place)):
                 target[x][y + i] = word_to_place[i].upper()
         return target
-
     #use  1 to lower, use 2 to upper
     def replace_empty_with_randm_char(self, source, mode):
         alphabet = 'abcdefghijklmnopqrstuvwxyzäöü'

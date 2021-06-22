@@ -11,7 +11,7 @@ class DataInput:
         print('init DataInput')
 
 
-    #get data from user, returns height, width, general_word_list, spezial_word_list
+    #get data from user, returns height, width, general_word_list, spezial_word_list, and the paragraph list
     def process(self):
         #gets the height
         height = self.get_number_input('Height: ')
@@ -54,8 +54,6 @@ class DataInput:
         
         #returns the things
         return height, width, general_word_list, spezial_word_list, words_with_coordinates
-
-
     #combines all lines that follow with the coordinates
     def evaluate_paragraph(self, lines):
         ret = []
